@@ -1,8 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUser } from "../services/user-api";
 
 function Home() {
   const [userInput, setUserInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+
+  //needs to recheck for user whenever the user is updated
+
+  useEffect(() => {
+    initialLoginScreenCheck();
+  }, []);
+
+  function initialLoginScreenCheck() {
+    getUser({ user: "information" });
+    console.log(
+      "From the home screen... Check if user is logged in, if so redirect to focus screen, if not stay here"
+    );
+  }
 
   function handleUserInput(input: string) {
     setUserInput(input);
