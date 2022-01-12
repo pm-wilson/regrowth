@@ -1,57 +1,48 @@
-import React from 'react';
-import logo from '../logo.svg';
-import { Counter } from '../features/counter/Counter';
+import { useState } from "react";
 
-function Page() {
+function Home() {
+  const [userInput, setUserInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+
+  function handleUserInput(input: string) {
+    setUserInput(input);
+  }
+
+  function handlePasswordInput(input: string) {
+    setPasswordInput(input);
+  }
+
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    console.log(`${userInput} logs in with ${passwordInput}`);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Make something cool here.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Hello World
-          </a>
-        </span>
-      </header>
+    <div>
+      <div className="App">login to begin</div>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <label>
+          User:
+          <input
+            type="text"
+            name="name"
+            value={userInput}
+            onChange={(e) => handleUserInput(e.target.value)}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            name="name"
+            value={passwordInput}
+            onChange={(e) => handlePasswordInput(e.target.value)}
+          />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 }
 
-export default Page;
+export default Home;
